@@ -4,7 +4,8 @@ from selenium.webdriver.common import action_chains
 
 from time import sleep
 
-output_file = open('dir_list.csv', 'w')
+buffer_size = 0
+output_file = open('dir_list.csv', 'w', buffer_size)
 row = 'company_name,country,website,current_url,products'
 output_file.write(row + '\n')
 
@@ -57,7 +58,7 @@ while page_number < 191:
 
         row = cmp_name + ',' + country + ',' + website + ',' + current_url + ',' + content
         wd.back()
-        output_file.write(row + '\n')
+        output_file.write(row.encode('utf-8') + '\n')
         prev_url = current_url
 
 
